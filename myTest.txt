@@ -1,2 +1,0 @@
-This is the file for git testing.
-This the modification to this file.
