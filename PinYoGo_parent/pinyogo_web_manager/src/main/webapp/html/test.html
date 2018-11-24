@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display All Brand</title>
+    <script src="../plugins/angularjs/angular.min.js"></script>
+    <script type="text/javascript">
+        var app = angular.module('pinyogo',[]);
+        app.controller = ('brandController',function($scope,$http){
+            $scope.findAll = function(){
+                $http.get('/brand/getAllBrand.do').success(function(response){
+                    $scope.map = response;
+                });
+            }
+        });
+    </script>
+</head>
+<body ng-app="pinyogo" ng-controller="brandController" ng-init="findAll()">
+<fieldset>
+    <table >
+        <tr>
+            <td>品牌ID</td>
+            <td>品牌名称</td>
+            <td>品牌首字母</td>
+            <td>品牌生日</td>
+        </tr>
+        <tr ng-repeat="brand in map">
+            <td>{{brand.id}}</td>
+            <td>{{brand.name}}</td>
+            <td>{{brand.first_char}}</td>
+        </tr>
+    </table>
+</fieldset>
+</body>
+</html>
